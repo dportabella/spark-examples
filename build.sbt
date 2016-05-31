@@ -53,7 +53,8 @@ libraryDependencies ++= Seq(
      exclude("com.sun.jersey", "jersey-server")
      exclude("com.sun.jersey", "jersey-core")
      exclude("com.sun.jersey", "jersey-json")
-     exclude("commons-io", "commons-io"),
+     exclude("commons-io", "commons-io")
+     exclude("javax.servlet", "servlet-api"),
   "org.apache.hbase" % "hbase-hadoop-compat" % hbaseVersion,
   "org.apache.commons" % "commons-math3" % "3.6.1",
   "com.twitter" %% "algebird-core" % "0.9.0",
