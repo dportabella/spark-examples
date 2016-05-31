@@ -73,5 +73,6 @@ libraryDependencies ++= Seq(
      exclude("org.apache.commons", "commons-math3")
      exclude("org.apache.thrift", "libthrift"),
   "com.github.scopt" %% "scopt" % "3.2.0",
-  "org.apache.spark" %% "spark-streaming-kinesis-asl" % sparkVersion
+  "org.apache.spark" %% "spark-streaming-kinesis-asl" % sparkVersion,
+  "org.eclipse.paho" % "org.eclipse.paho.client.mqttv3" % "1.0.2"
 )
