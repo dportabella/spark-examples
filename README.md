@@ -37,12 +37,7 @@ Menu -> Run -> Run SparkPi
 
 ## Assembly jar and run with spark-submit
 
-Note: there are two build.sbt configurations in this project: `build.sbt_run` for running it with sbt or IntelliJ (as the two examples above), and `build.sbt_assembly` for running it with spark-submit. I didn't managed to merge the two configurations into one, see [here](http://stackoverflow.com/a/21803413/3827) for more info.
-
 ```
-# use the alternative build.sbt for sbt-assembly
-$ cp build.sbt_assembly build.sbt
-
 # build target/scala-2.10/spark-examples-assembly-1.6.1.jar
 $ sbt assembly
 
@@ -52,7 +47,7 @@ $ $SPARK_HOME/bin/spark-submit --class org.apache.spark.examples.SparkPi --maste
 16/07/18 12:55:30 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
 Pi is roughly 3.14160476
 ```
-Note: remember to use the original build for running with sbt or IntelliJ: `cp build.sbt_run build.sbt`
+
 
 ## Select the example to run from sbt
 

@@ -20,12 +20,12 @@ resolvers += "Apache Staging" at "https://repository.apache.org/content/reposito
 
 libraryDependencies ++= Seq(
   "javax.servlet" % "javax.servlet-api" % "3.1.0",
-  "org.apache.spark" %% "spark-core" % sparkVersion,
-  "org.apache.spark" %% "spark-streaming" % sparkVersion,
-  "org.apache.spark" %% "spark-mllib" % sparkVersion,
-  "org.apache.spark" %% "spark-bagel" % sparkVersion,
-  "org.apache.spark" %% "spark-hive" % sparkVersion,
-  "org.apache.spark" %% "spark-graphx" % sparkVersion,
+  "org.apache.spark" %% "spark-core" % sparkVersion % "provided",
+  "org.apache.spark" %% "spark-streaming" % sparkVersion % "provided",
+  "org.apache.spark" %% "spark-mllib" % sparkVersion % "provided",
+  "org.apache.spark" %% "spark-bagel" % sparkVersion % "provided",
+  "org.apache.spark" %% "spark-hive" % sparkVersion % "provided",
+  "org.apache.spark" %% "spark-graphx" % sparkVersion % "provided",
   "org.apache.spark" %% "spark-streaming-twitter" % sparkVersion,
   "org.apache.spark" %% "spark-streaming-flume" % sparkVersion,
   "org.apache.spark" %% "spark-streaming-mqtt" % sparkVersion,
@@ -60,7 +60,7 @@ libraryDependencies ++= Seq(
      exclude("commons-io", "commons-io")
      exclude("javax.servlet", "servlet-api"),
   "org.apache.hbase" % "hbase-hadoop-compat" % hbaseVersion,
-  "org.apache.commons" % "commons-math3" % "3.6.1",
+  "org.apache.commons" % "commons-math3" % "3.6.1" % "provided",
   "com.twitter" %% "algebird-core" % "0.9.0",
   "org.scalacheck" %% "scalacheck" % "1.13.1",
   "org.apache.cassandra" % "cassandra-all" % "1.2.6"
@@ -81,3 +81,17 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-streaming-kinesis-asl" % sparkVersion,
   "org.eclipse.paho" % "org.eclipse.paho.client.mqttv3" % "1.0.2"
 )
+
+// taken from https://github.com/databricks/learning-spark/blob/master/build.sbt
+mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) =>
+  {
+    case m if m.toLowerCase.endsWith("manifest.mf") => MergeStrategy.discard
+    case m if m.startsWith("META-INF") => MergeStrategy.discard
+    case PathList("javax", "servlet", xs @ _*) => MergeStrategy.first
+    case PathList("org", "apache", xs @ _*) => MergeStrategy.first
+    case PathList("org", "jboss", xs @ _*) => MergeStrategy.first
+    case "about.html"  => MergeStrategy.rename
+    case "reference.conf" => MergeStrategy.concat
+    case _ => MergeStrategy.first
+  }
+}
