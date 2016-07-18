@@ -19,6 +19,7 @@ scalaVersion := "2.10.6"
 resolvers += "Apache Staging" at "https://repository.apache.org/content/repositories/orgapachehbase-1142/"
 
 libraryDependencies ++= Seq(
+  "javax.servlet" % "javax.servlet-api" % "3.1.0",
   "org.apache.spark" %% "spark-core" % sparkVersion,
   "org.apache.spark" %% "spark-streaming" % sparkVersion,
   "org.apache.spark" %% "spark-mllib" % sparkVersion,
