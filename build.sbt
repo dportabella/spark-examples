@@ -1,5 +1,5 @@
 val sparkVersion = "1.6.1"
-val hbaseVersion = "0.98.7-hadoop2"
+val hbaseVersion = "1.2.2"
 
 name := "spark-examples"
 
@@ -14,6 +14,9 @@ initialize := {
 }
 
 scalaVersion := "2.10.6"
+
+// for hbase 1.2.2 until it is published to maven. See https://issues.apache.org/jira/browse/HBASE-15925
+resolvers += "Apache Staging" at "https://repository.apache.org/content/repositories/orgapachehbase-1142/"
 
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % sparkVersion,
